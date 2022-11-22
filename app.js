@@ -13,3 +13,8 @@ const multiply = function (num1, num2) {
 const divide = function (num1, num2) {
   return num1 / num2;
 };
+
+const operate = function (num1, num2, operation) {
+  let result = operation(num1, num2);
+  return result;
+};
