@@ -2,7 +2,6 @@ let displayValue = "";
 let currentOperator = null;
 let num1 = null;
 let num2 = null;
-let result = null;
 
 function add(num1, num2) {
   return num1 + num2;
@@ -61,15 +60,18 @@ operators.forEach((item) => {
 const equalsButton = document.querySelector(".equals");
 
 equalsButton.addEventListener("click", (e) => {
-  const result = operate(
-    this[currentOperator],
-    Number(num1),
-    Number(num2)
-  ).toString();
-  const calculatorScreen = document.querySelector(".calculator__screen");
-  calculatorScreen.textContent = result;
-  num1 = result;
-  num2 = null;
+  if (this[currentOperator] && num1 !== null && num2 !== null) {
+    const result = operate(
+      this[currentOperator],
+      Number(num1),
+      Number(num2)
+    ).toString();
+    const calculatorScreen = document.querySelector(".calculator__screen");
+    calculatorScreen.textContent = result;
+    num1 = result;
+    num2 = null;
+    currentOperator = null;
+  }
 });
 
 const clearButton = document.querySelector(".clear");
@@ -79,5 +81,6 @@ clearButton.addEventListener("click", (e) => {
   calculatorScreen.textContent = "";
   num1 = null;
   num2 = null;
+  currentOperator = null;
   displayValue = "";
 });
