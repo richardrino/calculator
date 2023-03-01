@@ -71,3 +71,13 @@ equalsButton.addEventListener("click", (e) => {
   num1 = result;
   num2 = null;
 });
+
+const clearButton = document.querySelector(".clear");
+
+clearButton.addEventListener("click", (e) => {
+  const calculatorScreen = document.querySelector(".calculator__screen");
+  calculatorScreen.textContent = "";
+  num1 = null;
+  num2 = null;
+  displayValue = "";
+});
