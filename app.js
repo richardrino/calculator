@@ -67,11 +67,15 @@ const equalsButton = document.querySelector(".equals");
 
 equalsButton.addEventListener("click", (e) => {
   if (this[currentOperator] && num1 !== null && num2 !== null) {
-    const result = operate(
-      this[currentOperator],
-      Number(num1),
-      Number(num2)
-    ).toString();
+    let result = operate(this[currentOperator], Number(num1), Number(num2));
+
+    result = result.toString();
+
+    if (result.length > 11) {
+      result = (
+        Math.round(Number(result) * 10000000000) / 10000000000
+      ).toString();
+    }
     const calculatorScreen = document.querySelector(".calculator__screen");
     calculatorScreen.textContent = result;
     num1 = result;
