@@ -1,4 +1,5 @@
 let displayValue = "";
+let operatorButton = null;
 let currentOperator = null;
 let num1 = null;
 let num2 = null;
@@ -53,7 +54,12 @@ const operators = document.querySelectorAll(".operator");
 
 operators.forEach((item) => {
   item.addEventListener("click", (e) => {
+    if (operatorButton) {
+      operatorButton.classList.toggle("highlight");
+    }
+    operatorButton = e.target;
     currentOperator = e.target.dataset.operator;
+    operatorButton.classList.toggle("highlight");
   });
 });
 
@@ -71,6 +77,8 @@ equalsButton.addEventListener("click", (e) => {
     num1 = result;
     num2 = null;
     currentOperator = null;
+    operatorButton.classList.toggle("highlight");
+    operatorButton = null;
   }
 });
 
@@ -82,5 +90,9 @@ clearButton.addEventListener("click", (e) => {
   num1 = null;
   num2 = null;
   currentOperator = null;
+  if (operatorButton) {
+    operatorButton.classList.toggle("highlight");
+    operatorButton = null;
+  }
   displayValue = "";
 });
